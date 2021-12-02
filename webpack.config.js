@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports={
     entry:{
-        "myLib":path.resolve(__dirname,"src/index.ts")
+        "utils":path.resolve(__dirname,"src/index.ts")
     },
     output:{
         path:path.resolve(__dirname,"dist"),
@@ -15,10 +15,10 @@ module.exports={
     resolve: { extensions: ['.ts'] },
     plugins:[
         new CleanWebpackPlugin(),       
-        /* new DeclarationBundlerPlugin({
-            moduleName:'"mylib"',
-            out:'./bundle.d.ts',
-        }) */
+        new DeclarationBundlerPlugin({
+            moduleName:'"intoy-utils"',
+            out:'./index.d.ts',
+        })
     ],
     module:{
         rules: [
