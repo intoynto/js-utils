@@ -1,8 +1,9 @@
 {
   "name": "intoy-utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "js utils",
   "main": "dist/utils.js",
+  "typings": "dist/index.d.ts",
   "author": "intoy",
   "license": "MIT",
   "scripts": {

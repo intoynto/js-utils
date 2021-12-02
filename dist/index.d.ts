@@ -6,6 +6,11 @@ declare module "intoy-utils"
 	    add(a: number, b: number): number;
 	}
 
-	export * from "./calculator";
+	import { Calculator } from "./calculator";
+	import { TCalculator } from "./types";
+	export { TCalculator, Calculator };
+
+	export interface TCalculator {
+	}
 
 }
