@@ -382,7 +382,7 @@ export function withoutExtension(value:any)
     str=str.split('.');
 
     // if has dot remove last after dot
-    if(str.length>0)
+    if(str.length>1)
     {
         str.pop();
     }
