@@ -380,6 +380,12 @@ export function withoutExtension(value:any)
 {
     let str:any=toStr(value);
     str=str.split('.');
-    str.pop();
+
+    // if has dot remove last after dot
+    if(str.length>0)
+    {
+        str.pop();
+    }
+    
     return str.join('.');
 }
