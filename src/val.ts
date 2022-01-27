@@ -135,7 +135,20 @@ function checkAndGetNumString(value:string|number):number{
 
 function format3Digit(str:string|number){
     let val=typeof str!=="string"?str.toString():str;
-    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if(val.length>0)
+    {
+        let split=val.split('.'); // split koma
+        val=split[0];
+        let digit=(split[1]||'');
+
+        val=val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        if (digit.length>0)
+        {            
+            val+='.'+digit;
+        }
+    }
+    return val;
 }
 
 export function strReplace(str:string,searchStr:string,replaceStr:string){
