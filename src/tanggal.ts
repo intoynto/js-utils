@@ -157,7 +157,7 @@ export function mysqlTanggalToIndo(mysqlTanggal:string|null|undefined,separator=
             if(jams[2]){
                 sec=toInt(jams[2]);
             }
-            if(hour!==0 && min!==0 && sec!==0)
+            if(hour!==0 || min!==0 || sec!==0)
             {
                 hms.push(hour<10?'0'+hour:hour);
                 hms.push(min<10?'0'+min:min);
