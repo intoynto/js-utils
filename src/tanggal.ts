@@ -70,6 +70,9 @@ export function tanggalJsToFormatIndo(jsDate:Date|null|undefined=new Date(),sepa
 export function tanggalMySqlToFormatInput(mysqlTanggal:string){
     //contoh 2020-01-01
     let tanggal:string|any=mysqlTanggal && typeof mysqlTanggal==="string"?mysqlTanggal.toString().trim():"";
+    
+    if(tanggal.length<1) return "";
+
     let test=tanggal.split(" "); //split spasi
     if(test.length>0){
         tanggal=test[0];

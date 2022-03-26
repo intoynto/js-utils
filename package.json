@@ -1,6 +1,6 @@
 {
   "name": "intoy-utils",
-  "version": "0.0.8",
+  "version": "0.0.9.beta.0.1",
   "description": "js utils",
   "main": "dist/utils.js",
   "typings": "dist/utils.d.ts",
