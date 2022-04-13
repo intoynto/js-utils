@@ -314,3 +314,12 @@ export function toTimeStampSesi(waktuSesi:string|number|Date|null|undefined)
     }
     return hasil;
 }
+
+
+export function getNamaHari(tanggal:Date,long:boolean=false)
+{
+    const harisLong=['Minggu','Senin','Selasa','Rabu','Kamis','Jum"at','Sabtu'];
+    const harisSort=['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+    const day=tanggal.getDay();
+    return  long?harisLong[day]:harisSort[day];
+}

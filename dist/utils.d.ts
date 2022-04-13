@@ -54,6 +54,7 @@ export declare function tanggalBuildRentangBulanTahun(bulan_dari: INumString, ta
     };
 };
 export declare function toTimeStampSesi(waktuSesi: string | number | Date | null | undefined): string;
+export declare function getNamaHari(tanggal: Date, long?: boolean): string;
 
 export declare function terbilang(a: number): string;
 
