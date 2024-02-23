@@ -180,15 +180,15 @@ export function toNumIndo(value:string | number, digit:number=0){
     return str;
 }
 
+export function toDashVal(value:string|number|null|undefined,digit:number=0,after:string="",nol_value:string|number="0")
+{
+    nol_value=nol_value===undefined || nol_value===null?"0":nol_value;
 
-
-
-export function toDashVal(value:string|number|null|undefined,digit:number=0,after:string=""){
-    if(value===null || value===undefined) return '-';
+    if(value===null || value===undefined) return nol_value;
     
     let val=checkAndGetNumString(value);    
     if(val===0) {        
-        return '-'
+        return nol_value;
     }    
     return toNumIndo(val,digit)+(after?" "+after:"");
 }
@@ -366,9 +366,7 @@ export function dotenvParseValue(value:any)
         !val.toString().includes(',')
     ) {
         return val.toString().slice(0, Math.max(0, val.toString().length - 1));
-    }
-
-    
+    }    
 
     if(!Number.isNaN(Number(val)))
     {
@@ -401,4 +399,41 @@ export function withoutExtension(value:any)
     }
     
     return str.join('.');
+}
+
+/**
+ * Check any is valueable
+ * @param any value
+ * @returns bool
+ */
+export function is_value(value:any)
+{
+    if(value===undefined || value===null) return false;
+    if(Array.isArray(value) && value.length<1) return false;
+    if(typeof value==='number' && (value===0 || value===0.0 || value===0.000)) return false;
+    if(typeof value==='string' && value.toString().trim().length<1) return false;
+    return true;
+}
+
+/**
+ * Convert value to string
+ * @param any value
+ * @param bool value normalize utf8
+ * @param bool value must remove double space
+ * @param bool value must remove break line
+ * @param string for replace break line
+ * @returns string
+ */
+export function toTrim(value:any, usingUtf8:boolean=true, rem_dbl_space:boolean=true, rem_brk_line:boolean=false, brk_line_replace:string=' ')
+{
+    if(value===null || value===undefined) return '';
+    value=typeof value==="string" || typeof value==="number"?value.toString():"";
+    value=usingUtf8?toUtf8String(value):value.toString();
+    if(rem_brk_line)
+    {
+        let rpl=typeof brk_line_replace==="string" || typeof brk_line_replace==="number"?brk_line_replace.toString():" ";
+        value=value.replace(/\r?\n|\r/g,rpl);
+    }
+    value=rem_dbl_space?value.replace(/ +(?= )/g,''):value;
+    return value;
 }

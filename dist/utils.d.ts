@@ -37,7 +37,7 @@ export declare function tanggalJsToFormatIndo(jsDate?: Date | null | undefined, 
 export declare function tanggalMySqlToFormatInput(mysqlTanggal: string): string;
 export declare function tanggalMySqlToJsDate(mysqlTanggal: string): Date;
 export declare function tanggalMySQLdiffNow(mysqlTanggal: string): number;
-export declare function mysqlTanggalToIndo(mysqlTanggal: string | null | undefined, separator?: string, long?: boolean, show_time?: boolean, time_separator?: string): string;
+export declare function mysqlTanggalToIndo(mysqlTanggal: string | null | undefined, separator?: string, long?: boolean, show_time?: boolean, time_separator?: string, digit_bulan?: boolean): string;
 export declare function tanggalTertinggiBulanTahun(month: string | number, year: string | number): 28 | 29 | 30 | 31;
 export declare function tanggalBuildRentangBulanTahun(bulan_dari: INumString, tahun_dari: INumString, bulan_sampai: INumString, tahun_sampai: INumString): {
     from: {
@@ -69,14 +69,14 @@ export declare function toFileSize(bytes: string | number | null | undefined, di
 export declare function toEscapeString(str: string, char?: string): string;
 export declare function strReplace(str: string, searchStr: string, replaceStr: string): string;
 export declare function toNumIndo(value: string | number, digit?: number): any;
-export declare function toDashVal(value: string | number | null | undefined, digit?: number, after?: string): string;
+export declare function toDashVal(value: string | number | null | undefined, digit?: number, after?: string, nol_value?: string | number): string | number;
 export declare type ItodasValOps = {
     digit?: number;
     strBefore?: string;
     strAfter?: string;
     strNull?: string;
 };
-export declare function toDashAutoDigit(value: string | number | null | undefined, props?: ItodasValOps): string | 0;
+export declare function toDashAutoDigit(value: string | number | null | undefined, props?: ItodasValOps): string | number;
 export declare function toSecretString(value: string | number | null | undefined, char?: string): string;
 export declare function tryParseToArrayString(val: any): string[];
 export declare function rTrim(str: string, chr?: string): string;
@@ -85,6 +85,8 @@ export declare function toUnZero(val: number | string, len?: number, place?: str
 export declare function toSlugify(value: any): string;
 export declare function dotenvParseValue(value: any): any;
 export declare function withoutExtension(value: any): any;
+export declare function is_value(value: any): boolean;
+export declare function toTrim(value: any, usingUtf8?: boolean, rem_dbl_space?: boolean, rem_brk_line?: boolean, brk_line_replace?: string): any;
 
 export declare function isBase64Image(test: string): false | RegExpMatchArray;
 

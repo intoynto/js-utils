@@ -1,4 +1,4 @@
-import { lTrim, rTrim, toStr } from "./val";
+import { lTrim, rTrim } from "./val";
 
 function firstString(str:String,checkStr:String){
     let a=str.substr(0,checkStr.length);

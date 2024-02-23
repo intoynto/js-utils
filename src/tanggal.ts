@@ -107,7 +107,7 @@ export function tanggalMySQLdiffNow(mysqlTanggal:string){
     return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
 }
 
-export function mysqlTanggalToIndo(mysqlTanggal:string|null|undefined,separator="/",long:boolean=false,show_time:boolean=true,time_separator:string=':'){
+export function mysqlTanggalToIndo(mysqlTanggal:string|null|undefined,separator="/",long:boolean=false,show_time:boolean=true,time_separator:string=':',digit_bulan:boolean=false){
 
     let tanggal:string|any=mysqlTanggal && typeof mysqlTanggal==="string"?mysqlTanggal.toString().trim():"";    
     let test=tanggal.split(" "); //split spasi
@@ -138,6 +138,11 @@ export function mysqlTanggalToIndo(mysqlTanggal:string|null|undefined,separator=
         if(m>=1 && m<=12){
             const bulans=["","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
             const bulansShort=["","Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+            if(digit_bulan)
+            {
+                s.push(m<10?"0"+m:m);
+            }
+            else
             if(bulans[m]){
                 s.push(!long?bulansShort[m]:bulans[m]);
             }

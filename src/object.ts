@@ -1,5 +1,3 @@
-import {toStr} from "./val";
-
 export function isObjectEmpty(obj:object){
     for(let key in obj) {
         if(obj.hasOwnProperty(key))
@@ -107,8 +105,6 @@ export function objectFlatValuesFromProps(obj:ILooseObj,props?:string[]){
 
     return s;
 }
-
-
 
 export function isEqual(value:any,other:any){
     // Get the value type
