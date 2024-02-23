@@ -1,14 +1,16 @@
 import { lTrim, rTrim } from "./val";
 
-function firstString(str:String,checkStr:String){
-    let a=str.substr(0,checkStr.length);
+function firstString(str:String,checkStr:String):boolean
+{
+    let a=str.substring(0,checkStr.length);
     let b=checkStr.toString().toLowerCase().trim();
     a=a.toString().toLowerCase().trim();
     const hasil=a===b;   
     return hasil;
 }
 
-export function getBaseHref(){
+export function getBaseHref():string
+{
     let base = document.getElementsByTagName('base');
     return (base && base.length > 0 && base[0].href)?base[0].href:undefined;
 }
@@ -18,7 +20,8 @@ export function toUrlWithBaseHref(yourUrl:string):URL
     return new URL(yourUrl,getBaseHref());
 }
 
-export function getBaseName(){
+export function getBaseName():string
+{
     let browserPath = null;
     let base = document.getElementsByTagName('base');
     if (base && base.length > 0 && base[0].href) {
@@ -47,7 +50,7 @@ export function getBaseName(){
     return browserPath;
 }
 
-export function pathIsMatch(pathname:string,paths:string|string[]):any
+export function pathIsMatch(pathname:string,paths:string|string[]):boolean
 {
     if(pathname==='/' && typeof paths==='string' && paths==='/') return true;    
     pathname=lTrim(rTrim(pathname,'/'),'/');  
@@ -83,7 +86,7 @@ interface IcalculateProps {
     offsetY:number
 }
 
-export function calculateScrollOffset(elem:HTMLElement,props?:IcalculateProps)
+export function calculateScrollOffset(elem:HTMLElement,props?:IcalculateProps):number
 {
     props=props || {} as IcalculateProps;
     const body=document.body;
@@ -111,7 +114,7 @@ export function calculateScrollOffset(elem:HTMLElement,props?:IcalculateProps)
 }
 
 
-export function calculatePercentageInViewport(element:HTMLElement)
+export function calculatePercentageInViewport(element:HTMLElement):number
 {
     const viewport = {
         top: window.pageYOffset,

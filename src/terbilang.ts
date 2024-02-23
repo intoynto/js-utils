@@ -7,7 +7,8 @@
 * Inspired By: http://notes.rioastamal.net/2012/03/membuat-fungsi-terbilang-pada-php.html
 */
 
-export function terbilang(a:number){
+export function terbilang(a:number):string
+{
 	let bilangan = ['','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan','Sepuluh','Sebelas'];
 	let kalimat='';
 

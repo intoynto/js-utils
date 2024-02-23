@@ -1,4 +1,5 @@
-export function getWaktuKata(){
+export function getWaktuKata():string
+{
     let kata='malam';
     let h=new Date().getHours();
     if(h<18) kata='sore';

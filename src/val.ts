@@ -401,12 +401,7 @@ export function withoutExtension(value:any)
     return str.join('.');
 }
 
-/**
- * Check any is valueable
- * @param any value
- * @returns bool
- */
-export function is_value(value:any)
+export function is_value(value:any):boolean
 {
     if(value===undefined || value===null) return false;
     if(Array.isArray(value) && value.length<1) return false;
@@ -415,25 +410,21 @@ export function is_value(value:any)
     return true;
 }
 
-/**
- * Convert value to string
- * @param any value
- * @param bool value normalize utf8
- * @param bool value must remove double space
- * @param bool value must remove break line
- * @param string for replace break line
- * @returns string
- */
-export function toTrim(value:any, usingUtf8:boolean=true, rem_dbl_space:boolean=true, rem_brk_line:boolean=false, brk_line_replace:string=' ')
+export function toTrim(value:any, usingUtf8:boolean=true, rem_dbl_space:boolean=true, rem_brk_line:boolean=false, brk_line_replace:string=' '):string
 {
-    if(value===null || value===undefined) return '';
-    value=typeof value==="string" || typeof value==="number"?value.toString():"";
-    value=usingUtf8?toUtf8String(value):value.toString();
+    let str:string='';    
+    if(value===null || value===undefined) return str;
+
+
+    str=typeof value==="string" || typeof value==="number"?value.toString():"";
+    str=usingUtf8?toUtf8String(str):str.toString();
+
     if(rem_brk_line)
     {
         let rpl=typeof brk_line_replace==="string" || typeof brk_line_replace==="number"?brk_line_replace.toString():" ";
-        value=value.replace(/\r?\n|\r/g,rpl);
+        str=value.replace(/\r?\n|\r/g,rpl);
     }
-    value=rem_dbl_space?value.replace(/ +(?= )/g,''):value;
-    return value;
+
+    str=rem_dbl_space?str.replace(/ +(?= )/g,''):str;
+    return str;
 }

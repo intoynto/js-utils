@@ -10,7 +10,7 @@ export * from "./waktu";
 export declare function getBaseHref(): string;
 export declare function toUrlWithBaseHref(yourUrl: string): URL;
 export declare function getBaseName(): string;
-export declare function pathIsMatch(pathname: string, paths: string | string[]): any;
+export declare function pathIsMatch(pathname: string, paths: string | string[]): boolean;
 interface IcalculateProps {
     alignment: "top" | "middle" | "bottom";
     offsetY: number;
@@ -23,10 +23,10 @@ interface ILooseObj {
     [key: string]: any;
 }
 export declare function joinObjectProps(obj: ILooseObj, props: string[], separator?: string, cb?: (val: any, f: string) => void): string;
-export declare function objectProps(obj: ILooseObj, props: string[]): ILooseObj;
-export declare function objectFlat(obj: ILooseObj): ILooseObj;
-export declare function objectFlatProps(obj: ILooseObj, props?: string[]): ILooseObj;
-export declare function objectFlatValuesFromProps(obj: ILooseObj, props?: string[]): ILooseObj;
+export declare function objectProps(obj: ILooseObj, props: string[]): any;
+export declare function objectFlat(obj: ILooseObj): object;
+export declare function objectFlatProps(obj: ILooseObj, props?: string[]): object;
+export declare function objectFlatValuesFromProps(obj: ILooseObj, props?: string[]): object;
 export declare function isEqual(value: any, other: any): boolean;
 export declare function isClass(func: any): boolean;
 
@@ -38,21 +38,22 @@ export declare function tanggalMySqlToFormatInput(mysqlTanggal: string): string;
 export declare function tanggalMySqlToJsDate(mysqlTanggal: string): Date;
 export declare function tanggalMySQLdiffNow(mysqlTanggal: string): number;
 export declare function mysqlTanggalToIndo(mysqlTanggal: string | null | undefined, separator?: string, long?: boolean, show_time?: boolean, time_separator?: string, digit_bulan?: boolean): string;
-export declare function tanggalTertinggiBulanTahun(month: string | number, year: string | number): 28 | 29 | 30 | 31;
-export declare function tanggalBuildRentangBulanTahun(bulan_dari: INumString, tahun_dari: INumString, bulan_sampai: INumString, tahun_sampai: INumString): {
+export declare function tanggalTertinggiBulanTahun(month: string | number, year: string | number): number;
+export declare type IbdrBultah = {
     from: {
         d: number;
-        m: any;
-        y: any;
+        m: number;
+        y: number;
         str: string;
     };
     to: {
         d: number;
-        m: any;
-        y: any;
+        m: number;
+        y: number;
         str: string;
     };
 };
+export declare function tanggalBuildRentangBulanTahun(bulan_dari: INumString, tahun_dari: INumString, bulan_sampai: INumString, tahun_sampai: INumString): IbdrBultah;
 export declare function toTimeStampSesi(waktuSesi: string | number | Date | null | undefined): string;
 export declare function getNamaHari(tanggal: Date, long?: boolean): string;
 
@@ -86,8 +87,8 @@ export declare function toSlugify(value: any): string;
 export declare function dotenvParseValue(value: any): any;
 export declare function withoutExtension(value: any): any;
 export declare function is_value(value: any): boolean;
-export declare function toTrim(value: any, usingUtf8?: boolean, rem_dbl_space?: boolean, rem_brk_line?: boolean, brk_line_replace?: string): any;
+export declare function toTrim(value: any, usingUtf8?: boolean, rem_dbl_space?: boolean, rem_brk_line?: boolean, brk_line_replace?: string): string;
 
-export declare function isBase64Image(test: string): false | RegExpMatchArray;
+export declare function isBase64Image(test: string): boolean | RegExpMatchArray;
 
 export declare function getWaktuKata(): string;

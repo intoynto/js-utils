@@ -1,4 +1,5 @@
-export function isObjectEmpty(obj:object){
+export function isObjectEmpty(obj:object):boolean
+{
     for(let key in obj) {
         if(obj.hasOwnProperty(key))
             return false;
@@ -14,7 +15,8 @@ interface ILooseObj {
     [key:string]:any,
 }
 
-export function joinObjectProps(obj:ILooseObj,props:string[],separator:string=" ",cb?:(val:any,f:string)=>void){
+export function joinObjectProps(obj:ILooseObj,props:string[],separator:string=" ",cb?:(val:any,f:string)=>void):string
+{
     const hasObj=(typeof obj==="object" && Array.isArray(props) && props.length>0);
     
     const s=new Array();    
@@ -41,7 +43,8 @@ export function joinObjectProps(obj:ILooseObj,props:string[],separator:string=" 
     return s.join(separator);
 }
 
-export function objectProps(obj:ILooseObj,props:string[]){
+export function objectProps(obj:ILooseObj,props:string[]):any
+{
     const hasObj=(typeof obj==="object" && Array.isArray(props) && props.length>0);
     const s:ILooseObj={};
 
@@ -54,7 +57,8 @@ export function objectProps(obj:ILooseObj,props:string[]){
     return s;
 }
 
-export function objectFlat(obj:ILooseObj){
+export function objectFlat(obj:ILooseObj):object
+{
     const s:ILooseObj={};
     for(let p in obj){
         if(typeof obj[p]!=="function") s[p]=obj[p];
@@ -63,12 +67,14 @@ export function objectFlat(obj:ILooseObj){
 }
 
 
-export function objectFlatProps(obj:ILooseObj,props?:string[]){
+export function objectFlatProps(obj:ILooseObj,props?:string[]):object
+{
     const hasObj=(typeof obj==="object" && Array.isArray(props) && props.length>0);
     if(!hasObj) return objectFlat(obj);
 
     const s:ILooseObj={};
-    if(props!==undefined && props!==null){
+    if(props!==undefined && props!==null)
+    {
         for(let i=0; i<props.length; i++){
             const p=props[i];
             if(typeof obj[p]!=="function") s[p]=obj[p];        
@@ -78,7 +84,8 @@ export function objectFlatProps(obj:ILooseObj,props?:string[]){
 }
 
 
-export function objectFlatValuesFromProps(obj:ILooseObj,props?:string[]){
+export function objectFlatValuesFromProps(obj:ILooseObj,props?:string[]):object
+{
     const s:ILooseObj={};
 
     if(typeof obj!=="object") {
@@ -106,7 +113,8 @@ export function objectFlatValuesFromProps(obj:ILooseObj,props?:string[]){
     return s;
 }
 
-export function isEqual(value:any,other:any){
+export function isEqual(value:any,other:any)
+{
     // Get the value type
     let type = Object.prototype.toString.call(value);
 
@@ -175,6 +183,7 @@ export function isEqual(value:any,other:any){
 }
 
 
-export function isClass(func:any){
+export function isClass(func:any):boolean
+{
     return typeof func === 'function' && /^class\s/.test(Function.prototype.toString.call(func));
 }

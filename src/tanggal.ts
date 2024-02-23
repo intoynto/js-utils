@@ -2,7 +2,8 @@ import { toInt } from "./val";
 
 type INumString=number | string;
 
-export function getNamaBulan(val:number|string,long?:boolean){
+export function getNamaBulan(val:number|string,long?:boolean):string
+{
     let index=val;
     if(typeof index!=="number"){
         index=parseInt(index);
@@ -13,7 +14,8 @@ export function getNamaBulan(val:number|string,long?:boolean){
     return (long?bulan[index]:bulanSort[index])||null;
 }
 
-function whileChar(str:string|number="",charVal:string="0",length:number=2){
+function whileChar(str:string|number="",charVal:string="0",length:number=2):string
+{
     let s=typeof str==="string" || typeof str==="number"?str.toString().trim():"";
     if(length>0){
         while(s.length<length){
@@ -23,7 +25,8 @@ function whileChar(str:string|number="",charVal:string="0",length:number=2){
     return s;
 }
 
-export function tanggalJsToFormatInput(jsDate:Date|null|undefined, useHtml:boolean=false){
+export function tanggalJsToFormatInput(jsDate:Date|null|undefined, useHtml:boolean=false):string
+{
     if(!jsDate || !(jsDate instanceof Date)){
         jsDate=new Date();
     }    
@@ -47,7 +50,8 @@ export function tanggalJsToFormatInput(jsDate:Date|null|undefined, useHtml:boole
     return ps.join(".");
 }
 
-export function tanggalJsToFormatIndo(jsDate:Date|null|undefined=new Date(),separator:string="/",usingHtml:boolean=false){
+export function tanggalJsToFormatIndo(jsDate:Date|null|undefined=new Date(),separator:string="/",usingHtml:boolean=false):string
+{
     if(!jsDate || !(jsDate instanceof Date)){
         jsDate=new Date();
     }
@@ -67,7 +71,8 @@ export function tanggalJsToFormatIndo(jsDate:Date|null|undefined=new Date(),sepa
     return s.join(separator);
 }
 
-export function tanggalMySqlToFormatInput(mysqlTanggal:string){
+export function tanggalMySqlToFormatInput(mysqlTanggal:string):string
+{
     //contoh 2020-01-01
     let tanggal:string|any=mysqlTanggal && typeof mysqlTanggal==="string"?mysqlTanggal.toString().trim():"";
     
@@ -84,7 +89,8 @@ export function tanggalMySqlToFormatInput(mysqlTanggal:string){
     return d+"."+m+"."+y;
 }
 
-export function tanggalMySqlToJsDate(mysqlTanggal:string){
+export function tanggalMySqlToJsDate(mysqlTanggal:string):Date
+{
     //contoh 2020-01-01
     let tanggal:string|any=mysqlTanggal && typeof mysqlTanggal==="string"?mysqlTanggal.toString().trim():"";
     let test=tanggal.split(" "); //split spasi
@@ -101,13 +107,15 @@ export function tanggalMySqlToJsDate(mysqlTanggal:string){
     return new Date(tag.getTime()+tag.getTimezoneOffset()*60000);
 }
 
-export function tanggalMySQLdiffNow(mysqlTanggal:string){
+export function tanggalMySQLdiffNow(mysqlTanggal:string):number
+{
     const dt1=tanggalMySqlToJsDate(mysqlTanggal);
     const dt2=new Date();
     return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
 }
 
-export function mysqlTanggalToIndo(mysqlTanggal:string|null|undefined,separator="/",long:boolean=false,show_time:boolean=true,time_separator:string=':',digit_bulan:boolean=false){
+export function mysqlTanggalToIndo(mysqlTanggal:string|null|undefined,separator="/",long:boolean=false,show_time:boolean=true,time_separator:string=':',digit_bulan:boolean=false):string
+{
 
     let tanggal:string|any=mysqlTanggal && typeof mysqlTanggal==="string"?mysqlTanggal.toString().trim():"";    
     let test=tanggal.split(" "); //split spasi
@@ -186,14 +194,30 @@ export function mysqlTanggalToIndo(mysqlTanggal:string|null|undefined,separator=
 }
 
 
-export function tanggalTertinggiBulanTahun(month:string|number,year:string|number)
+export function tanggalTertinggiBulanTahun(month:string|number,year:string|number):number
 {
     month=toInt(month);
     year=toInt(year);
     return month=== 2 ? (year % 4 ? 28 : (year % 100 ? 29 : (year %400 ? 28 : 29))) : ((month - 1) % 7 % 2 ? 30 : 31);
 }
 
-export function tanggalBuildRentangBulanTahun(bulan_dari:INumString, tahun_dari:INumString, bulan_sampai:INumString, tahun_sampai:INumString)
+type IbdrBultah = 
+{
+    from:{
+        d:number
+        m:number
+        y:number
+        str:string
+    },
+    to:{
+        d:number
+        m:number
+        y:number
+        str:string
+    }
+}
+
+export function tanggalBuildRentangBulanTahun(bulan_dari:INumString, tahun_dari:INumString, bulan_sampai:INumString, tahun_sampai:INumString):IbdrBultah
 {
     bulan_dari=toInt(bulan_dari);
     bulan_sampai=toInt(bulan_sampai);
@@ -262,7 +286,7 @@ export function tanggalBuildRentangBulanTahun(bulan_dari:INumString, tahun_dari:
 }
 
 
-export function toTimeStampSesi(waktuSesi:string|number|Date|null|undefined)
+export function toTimeStampSesi(waktuSesi:string|number|Date|null|undefined):string
 {
     let ws:any=typeof waktuSesi==="string"?parseInt(waktuSesi)
                 :waktuSesi instanceof Date?waktuSesi.getTime()/1000
@@ -321,7 +345,7 @@ export function toTimeStampSesi(waktuSesi:string|number|Date|null|undefined)
 }
 
 
-export function getNamaHari(tanggal:Date,long:boolean=false)
+export function getNamaHari(tanggal:Date,long:boolean=false):string
 {
     const harisLong=['Minggu','Senin','Selasa','Rabu','Kamis','Jum"at','Sabtu'];
     const harisSort=['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
